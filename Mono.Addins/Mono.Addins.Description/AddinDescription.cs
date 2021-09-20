@@ -1279,7 +1279,10 @@ namespace Mono.Addins.Description
 					if (props.Contains(stringToCheck))
 					{
 						errors.Add (string.Format ("Property {0} specified more than once", prop.Name + (prop.Locale != null ? " (" + prop.Locale + ")" : "")));
-						props.Add(stringToCheck);
+					}
+					else
+					{
+						props.Add(stringToCheck);	
 					}
 						
 				}

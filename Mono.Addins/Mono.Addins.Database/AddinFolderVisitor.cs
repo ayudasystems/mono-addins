@@ -56,7 +56,12 @@ namespace Mono.Addins.Database
 		void VisitFolderInternal (IProgressStatus monitor, string path, string domain, bool recursive)
 		{
 			// Avoid folders including each other
-			if (visitedFolders.Contains (path) || ScanContext.IgnorePath (path))
+			if (visitedFolders.Contains(path))
+				return;
+			
+			visitedFolders.Add(path);
+			
+			if (ScanContext.IgnorePath (path))
 				return;
 
 			OnVisitFolder (monitor, path, domain, recursive);

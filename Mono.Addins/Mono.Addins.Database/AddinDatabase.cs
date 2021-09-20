@@ -559,8 +559,10 @@ namespace Mono.Addins.Database
 
 		void UpdateEnabledStatus (string domain, Addin addin, List<Addin> allAddins, List<Addin> updatedAddins)
 		{
-			if (updatedAddins.Contains (addin))
+			if (updatedAddins.Contains(addin))
 				return;
+					
+			updatedAddins.Add(addin);
 
 			if (!addin.Enabled)
 				return;
@@ -1974,6 +1976,8 @@ namespace Mono.Addins.Database
 			string sid = desc.AddinId + " " + desc.Domain;
 			if (inserted.Contains (sid))
 				return;
+
+			inserted.Add(sid);
 
 			foreach (ModuleDescription mod in desc.AllModules) {
 				foreach (Dependency dep in mod.Dependencies) {
